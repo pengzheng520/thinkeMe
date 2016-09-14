@@ -895,7 +895,7 @@ function loadBooks(len,end){
 
             data.sort(function(a,b){
                 return a.chapter > b.chapter
-            })
+            });
 
             var dataContent = "" ;
 
