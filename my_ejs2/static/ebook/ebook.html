@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>电子书</title>
+    <!-- mathPanel-->
+    <link href="/mathquill/mathquill.css" rel="stylesheet">
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/select2/select2.min.css" rel="stylesheet">
+    <style>
+        body{
+            width: 100%;
+            overflow-x: hidden;
+        }
+        .header{
+            padding-top: 20px;
+            text-align: center;
+        }
+        .selectBooks{
+            display: block;
+            width: 185px;
+        }
+        #containerSvg{
+            display: none;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        #containerSvg > *{
+            float: left;
+        }
+        svg{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .forh1 {
+            color: rgb(51, 51, 51);
+            font-weight: normal;
+            text-shadow: rgba(0, 0, 0, 0.4) 0px 0px 3px;
+            text-align: center;
+            max-height: 280px;
+            font-family: Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+            border-bottom-style: ridge;
+            padding: 0px 50px 20px;
+            overflow: hidden;
+            border-width: 8px;
+            font-size: 28px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .btn-group{
+            display: none;
+            position: fixed;
+            right: 5px;
+            top:5px;
+        }
+        /*连线题,分类题*/
+        .linkLeft {
+            fill: #5bc0de;
+            fill-opacity: 0.8;
+            stroke: none;
+            cursor: pointer;
+        }
+        .linkRight {
+            fill: #5cb85c;
+            fill-opacity: 0.8;
+            stroke: none;
+            cursor: pointer;
+        }
+        #classfiedQuestion,#linkedQuestion{
+            margin: 10px auto;
+        }
+        #classfiedQuestion text,#linkedQuestion text{
+            pointer-events: none;
+            font-size: 20px;
+            -webkit-user-select: none;
+        }
+        .LinkFiedClassQuestion{
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<!--选择书本-->
+<div class="header">
+    <span>请选择书:</span>
+    <select class="selectBooks"></select>
+    <button type="button" class="btn btn-default" id="yesBtn">确定</button>
+</div>
+<!--按钮-->
+<div class="btn-group">
+    <button type="button" class="btn btn-default" id="buttonPrev">上一页</button>
+    <button type="button" class="btn btn-default" id="buttonNext">下一页</button>
+</div>
+<div id="containerSvg"></div>
+<script type="text/javascript" src="/js/jquery.min.js" ></script>
+<!-- mathPanel-->
+<script type="text/javascript" src="/MathPanel/mathquill-0.9.1/mathquill.js"></script>
+<!--our js file-->
+<script src="/js/ours/jsResize.js" type="text/javascript"></script>
+<script src="/js/ours/myJS.js" type="text/javascript"></script>
+<script src="/js/ours/mySVG.js" type="text/javascript"></script>
+<script src="/js/ours/mySVGFx.js" type="text/javascript"></script>
+<script src="/js/ours/analytic.js" type="text/javascript"></script>
+
+<script src="/select2/select2.min.js" type="text/javascript"></script>
+<script src="/layer/layer.js" type="text/javascript"></script>
+<!--js-->
+<script src="/ebook/ebook.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+a {
+    outline: none;
+    *zoom:1
+}
+a:focus {
+    outline: 0;
+}
+#warning_info {
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    padding: 8px 35px 8px 14px;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+}
+.top-dropdown {
+    float: right;
+    padding-top: 10px;
+}
+.f-text {
+    width: 248px;
+    padding: 5px;
+    border: 1px solid #aaa;
+    line-height: 24px;
+}
+.login-field {
+    display: block;
+}
+.login-field>.glyphicon {
+    top: 28px;
+    left: 10px;
+}
+.login-field input{
+    padding-left:30px;
+}
+.navbar-fixed-top {
+    z-index: 999;
+}
+#content {
+    padding-top: 50px;
+}
+#userExit{
+    display: none;
+}
+body{
+    font-family : 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-Y : hidden;
+    overflow-x: auto;
+}
+
+
+/*分享好友*/
+.share{
+    padding: 20px;
+}
+.share h4{
+    border-left: 2px solid #2D93CA;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.share .share-header{
+    padding-bottom: 10px;
+}
+.share .share-header > div{
+    margin-right: 6px;
+    margin-bottom: 6px;
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.share .share-header > div:hover{
+    /*border: 1px solid #3c763d;*/
+    /*box-shadow: 1px 1px 5px #3c763d;*/
+    background: #ddd;
+}
+.share .share-body > div{
+    margin-right: 6px;
+    margin-bottom: 6px;
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+}
+.share .share-body > div .close{
+    margin-left: 10px;
+    line-height:normal;
+}

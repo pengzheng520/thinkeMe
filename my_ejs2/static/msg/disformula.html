@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../mathquill/mathquill.css"/>
+    <style>
+        html, body, .main{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .main{
+            width:450px;
+            height:60px;
+        }
+        .mathquill-editable,
+        .mathquill-rendered-math{
+            border: 0px;
+            padding: 0px;
+            margin:4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div class="mathquill-editable"></div>
+</div>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../mathquill/mathquill.js"></script>
+<script>
+    $(function(){
+
+        var  $iframe = $(getSelfIframe());
+        /* 获得当前公式所在的iframe节点 */
+        function getSelfIframe(){
+            var iframes = parent.document.getElementsByTagName('iframe');
+            for (var key in iframes) {
+                if (iframes[key].contentWindow == window) {
+                    return iframes[key];
+                }
+            }
+            return null;
+        }
+        /* 获得当前url上的hash存储的参数值 */
+        function getLatex() {
+            return $iframe.attr('data-latex') || '';
+        }
+
+        /* 公式 */
+        var Formula = function(){
+            var _this = this,
+                    latex = getLatex();
+
+            if($iframe.is(":hidden")) {
+                var domInterface = $(window.parent.document).find(".interface");
+                domInterface.css({display: 'block', visibility: 'hidden'});
+                /* 加载公式内容 */
+                this.$mathquill = $('.mathquill-editable').mathquill('latex', latex);
+                $iframe.width(this.$mathquill.width() + 8).height(this.$mathquill.height() + 8);
+                domInterface.css({display: 'none', visibility: 'visible'});
+            }else{
+                this.$mathquill = $('.mathquill-editable').mathquill('latex', latex);
+                $iframe.width(this.$mathquill.width() + 8).height(this.$mathquill.height() + 8);
+            }
+
+
+
+            /* 清除初始化的高亮状态 */
+            this.$mathquill.removeClass('hasCursor');
+            this.$mathquill.removeClass('mathquill-editable').unbind();
+        };
+
+
+        /* 绑定到window上，给上级window调用 */
+        window.formula = new Formula();
+    });
+
+</script>
+</body>
+</html>

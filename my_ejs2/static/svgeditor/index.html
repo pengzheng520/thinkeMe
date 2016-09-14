@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ThinkMe Demo</title>
+
+<!-- Bootstrap core CSS-->
+<link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- mathPanel-->
+<link href="/mathquill/mathquill.css" rel="stylesheet">
+<style>
+	/*作图工具栏开始*/
+	html,body{
+		width: 100%;
+		height: 100%;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	#SVGParent{
+		overflow: hidden;
+		background: #fff;
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+	.grid line {
+		stroke-width:1;
+		stroke:lightgrey;
+		stroke-dasharray: 2 2;
+	}
+	.point{
+		stroke: black;
+		stroke-width:2;
+		fill: black;
+		cursor: pointer;
+	}
+	.point:hover{
+		stroke: red;
+		fill: red;
+	}
+	.text, tspan {
+		pointer-events : none;
+		font-size : 14px;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	.unSelected {
+		pointer-events : none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	text{
+		pointer-events : none;
+		font-size : 20px;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	.edit{
+		border:1px solid #dddddd;
+		outline:0;
+		padding:2px;
+
+	}
+
+	.myEditorDiv{
+		float:left;
+		width:100%;
+		font-size:24px;
+		padding:6px 12px;
+	}
+
+	/*start bookDemo css*/
+	.linkLeft{
+		fill:#5bc0de;
+		fill-opacity:0.8;
+		stroke:none;
+		cursor:pointer;
+	}
+	.linkRight{
+		fill:#5cb85c;
+		fill-opacity:0.8;
+		stroke:none;
+		cursor:pointer;
+	}
+
+	 /*右键菜单使用*/
+	 ul,li{ margin:0; padding:0; list-style:none; font-size:12px;}
+	.popup_menu{position:absolute; z-index:90; border:1px solid #AEAEAE; padding:2px; width:120px;}
+	.popup_menu a{ display:block; color:#325B8E; text-indent:12px; text-decoration:none; height:26px; line-height:25px; padding-right:5px;}
+	.popup_menu a:hover{ background:#57B4E4; color:#fff; border-radius:5px;}
+	.svg_edt{
+		position:absolute;
+		left:20px;
+		top:5px;
+	}
+	.svg_edt .glyphicon{
+		font-size:14px;
+	}
+	.obj button.vertical {
+		display: block;
+		float: none;
+		margin-top: -1px !important;
+		margin-left: 0px !important;
+	}
+	.obj #svgdrag button.vertical{
+		border-top-right-radius: 0 !important;
+		border-bottom-right-radius: 4px !important;
+		border-bottom-left-radius: 4px !important;
+	}
+	.obj>div>button.vertical:first-child {
+		border-top-right-radius: 4px !important;
+		border-bottom-right-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+	}
+	#svgdrag{
+		margin-left:0;
+	}
+	/*作图工具栏结束*/
+</style> 
+</head>
+<body>
+<div id="SVGParent"></div>
+<script type="text/javascript" src="/js/jquery.min.js" ></script>
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<!-- mathPanel-->
+<script type="text/javascript" src="/mathquill/mathquill.js"></script>
+<!--our js file--> 
+<script src="/svgeditor/ours/jsResize.js" type="text/javascript"></script> <!--避免resize两次调用-->
+<script src="/svgeditor/ours/myJS.js" type="text/javascript"></script>
+<script src="/svgeditor/ours/mySVG.js" type="text/javascript"></script>
+<script src="/svgeditor/ours/mySVGFx.js" type="text/javascript"></script>
+<script src="/svgeditor/ours/analytic.js" type="text/javascript"></script>
+<script>
+    $(function(){
+        var editor = false;
+        //生成svg实例
+        if(window.parent.firstMsg.id == $(".group-interface", window.parent.document).attr("data-createuser")){
+            editor = true ;
+        }
+        var svgBox=new SVG("SVGParent","SVGSelf",null,null,-5,5,-5,5,null,true,true,true,editor,true);
+		var act = window.parent.firstMsg.Acts;
+		if(act){
+			svgBox.actA = act;
+			svgBox.processAct(svgBox.actA);
+		}
+        window.parent.firstMsg.socket.on('svgDirective',function(content){
+            //svgBox.actA = content;
+			svgBox.action(content,true)
+			var a = [];
+			a.push(content)
+            svgBox.processAct(a);
+        });
+    })
+    //processAct
+</script>
+</body>
+</html>

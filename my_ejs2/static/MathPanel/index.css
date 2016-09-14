@@ -1,0 +1,71 @@
+﻿#resultLatex{
+	font-size:20px;
+	color:green;
+	width:280px;
+}
+#jiexiform{
+	font-size:20px;
+	color:blue;
+	width:280px;
+}
+#span1{
+	float:left;color:white;
+}
+#span2{
+	float:center;
+	width:30px;
+	background-color:white;
+	color:red;
+	border:2px solid white;
+	font-size:14px;
+}
+
+body{margin:0px;padding:0px;
+	font-size:12px;}
+div{float:left;width:100%;}
+li{float:left;list-style:none;}
+
+.tabMenu{
+	width:580px;
+	background-color:white;
+}
+.tabTitle li{
+	cursor:pointer;
+}
+.tabTitle li.current{
+	background-color:white;
+	border-top:solid #E1E6E6 1px;
+	border-left:solid #E1E6E6 1px;
+	border-right:solid #E1E6E6 1px;
+}
+.tabTitle{
+	padding-left:3px;
+	width:285px;
+	background:url(bg.jpg);
+}
+.tabTitle li{
+	padding:2px;
+	margin-top:5px;
+	padding-bottom:7px;
+	width:90px;
+	text-align:center;
+	line-height:16px;
+}
+.tabContent li{
+	width:30px;
+	height:30px;
+	margin:5px;
+	background-image:url(math.png);
+	background-repeat: no-repeat;
+}
+.tabContent div.mathBox div.mathIcon{
+	overflow:hidden;
+	height:80px;
+}
+.tabContent div.mathBox div.more{
+	width:95%;
+	text-align:right;
+	padding:5px;
+	cursor:pointer;
+}
+

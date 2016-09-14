@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Required meta tags always come first -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>LiveBooks</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+<!-- myNotes CSS -->
+<link rel="stylesheet" href="/css/myNotes.css">
+</head>
+<body>
+<!-- 小学头 -->
+<div class="primary_school_header">
+  <div class="container">
+    <div class="row">
+      <div class="school_img">小&nbsp;&nbsp;&nbsp;学</div>
+    </div>
+  </div>
+</div>
+<!-- end 小学头 --> 
+<!-- 小学内容 -->
+<div class="primary_school_content">
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-2"><a class="booklist" id="newdemo" href="javascript:void(0)"><img src="images/W020150126488555003361.jpg" class="img-responsive center-block" /><h5>数学</h5></a></div>
+        <div class="col-sm-2"><a class="booklist" href="#"><img src="images/W020140926359794161467.jpg" class="img-responsive center-block" /></a></div>
+        <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+        <div class="col-sm-2"><a class="booklist" href="#"><img src="images/1900448771-1_w_1.jpg" class="img-responsive center-block" /></a></div>
+        <div class="col-sm-2"><a class="booklist" href="#"><img src="images/W020130903508940901471.jpg" class="img-responsive center-block" /></a></div>
+        <div class="col-sm-2"><a class="booklist" href="#"><img src="images/W020140319592634229399.jpg" class="img-responsive center-block" /></a></div>
+    </div>
+    <div class="row morebook"> <img src="images/morebook.png" class="img-responsive center-block" /> </div>
+  </div>
+</div>
+<!-- end 小学内容 --> 
+<!-- 中学头 -->
+<div class="primary_school_header">
+  <div class="container">
+    <div class="row">
+      <div class="school_img">初&nbsp;&nbsp;&nbsp;中</div>
+    </div>
+  </div>
+</div>
+<!-- end 中学头 --> 
+<!-- 中学学内容 -->
+<div class="primary_school_content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+    </div>
+    <div class="row morebook"> <img src="images/morebook.png" class="img-responsive center-block" /> </div>
+  </div>
+</div>
+<!-- end 中学内容 --> 
+<!-- 中学头 -->
+<div class="primary_school_header">
+  <div class="container">
+    <div class="row">
+      <div class="school_img">高&nbsp;&nbsp;&nbsp;中</div>
+    </div>
+  </div>
+</div>
+<!-- end 中学头 --> 
+<!-- 中学学内容 -->
+<div class="primary_school_content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+      <div class="col-sm-2"><a class="booklist" href="#"><img src="images/yuwen.png" class="img-responsive center-block" /></a></div>
+    </div>
+    <div class="row morebook"> <img src="images/morebook.png" class="img-responsive center-block" /> </div>
+  </div>
+</div>
+<!-- end 中学内容 --> 
+<!-- jQuery first, then Bootstrap JS. --> 
+<script src="/js/jquery.min.js"></script>
+<!--<script src="/js/jsMobile.js"></script>-->
+<script>
+$(function(){
+  //svgdemo跳转到nodejs
+  $(".booklist").click(function(e){
+        var bookName =$(this).attr('id');
+        if(bookName) {
+            var booksHref = "/books/"+bookName;
+            window.location.href = booksHref;
+        }else{
+            alert('此书正在开发，亲情期待')
+        }
+  });
+})
+</script>
+</body>
+</html>

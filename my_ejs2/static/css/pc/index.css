@@ -1,0 +1,711 @@
+/*中间内容区域*/
+div.container-main{
+    margin-right: 280px;
+    padding: 0 15px;
+    float: right;
+    font-size:1.2rem;
+}
+div.container-svg{
+    width: 100%;
+}
+.editSVG{
+    font-size: 1.4rem;
+}
+.mainSvg .mathquill-rendered-math,.mainSvg .mathquill-rendered-math .mathquill-editable{
+    padding-top: 0;
+}
+/*操作区域*/
+div.control-box{
+    position: fixed;
+    left:20px;
+    bottom:20px;
+    width: 50px;
+    height: 50px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+div.control-box > div{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    font-size: 14px;
+    border: 1px solid #CCC;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 2px;
+    position: absolute;
+    background-color: #fff;
+    top:0;
+    left: 0;
+    opacity: 0;
+    display: none;
+}
+div.control-box > div#jia{
+    background-color: #2b669a;
+    opacity: 1;
+    z-index: 2;
+    display: block;
+    -moz-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+div.control-box > div#jia.cur{
+    transform: rotate(135deg);
+    -ms-transform: rotate(135deg); /* IE 9 */
+    -webkit-transform: rotate(135deg); /* Safari and Chrome */
+
+}
+div.control-box > div#jia img{
+    width: 26px;
+    margin-top: -4px;
+    display: inline-block;
+}
+div.control-box > div.active,div.control-box > div:hover{
+    background-color:#c4e3f3;
+}
+/*选择颜色*/
+.select-color {
+    width: 230px;
+    padding: 4px 10px 8px 8px;
+    border: 1px solid #d3d3d3;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    background: #fff;
+    position: fixed;
+    z-index: 2;
+    display: none;
+}
+.select-color .tkm-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
+    border-color: transparent #d3d3d3 transparent transparent;
+    left: -12px;
+    top: 12px
+}
+.select-color .tkm-triangle:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 11px 11px 11px 0;
+    border-color: transparent #fff transparent transparent;
+    top: -11px;
+    left: 1px
+}
+.select-color .tkm-colors-div {
+    float: right;
+}
+.select-color .tkm-title {
+    font-size: 1.4rem;
+    color: #666;
+    padding-top: 1px;
+    padding-bottom: 0;
+}
+.select-color .tkm-color-menu {
+    padding: 2px 1px;
+}
+.select-color .tkm-color-menu .tkm-color-option{
+    margin-right: 3px;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    border-radius: 100%;
+    position: relative;
+}
+.select-color .tkm-color-menu .tkm-color-option:hover{
+    box-shadow: 0 0 8px #333;
+    -webkit-box-shadow: 0 0 8px #333;
+    -moz-box-shadow: 0 0 8px #333;
+    -ms-box-shadow: 0 0 8px #333;
+}
+/*加载提示*/
+#resourcewaiting {
+    position: fixed;
+    width: 160px;
+    margin-top: -20px;
+    margin-left: -80px;
+    left: 50%;
+    top: 50%;
+    height: 40px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #3b3e43;
+    border-radius: 2px;
+    padding-left: 10px;
+    -webkit-box-shadow: rgba(84,84,84,.43) 0 0 4px;
+    box-shadow: rgba(84,84,84,.43) 0 0 4px;
+    z-index: 9999;
+    display: none;
+}
+#resourcewaiting .icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url(/image/loading.png) no-repeat center;
+    background-size: 50% 50%;
+    -webkit-animation-name: x-loading-frames;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: step-start;
+}
+#resourcewaiting span {
+    vertical-align: top;
+}
+#resourcewaiting .label {
+    display: inline-block;
+    line-height: 40px;
+    padding: 0 5px;
+}
+@-webkit-keyframes x-loading-frames {
+    0% {	transform: rotate(0deg);        -webkit-transform: rotate(0deg);    }
+    8.3% {        -webkit-transform: rotate(30deg);        transform: rotate(30deg);    }
+    16.6% {        -webkit-transform: rotate(60deg);        transform: rotate(60deg);    }
+    25% {    	-webkit-transform: rotate(90deg);    	transform: rotate(90deg);    }
+    33.3% {        -webkit-transform: rotate(120deg);        transform: rotate(120deg);    }
+    41.6% {    	-webkit-transform: rotate(150deg);    	transform: rotate(150deg);    }
+    50% {        -webkit-transform: rotate(180deg);        transform: rotate(180deg);    }
+    58.3% {        -webkit-transform: rotate(210deg);        transform: rotate(210deg);    }
+    66.6% {        -webkit-transform: rotate(240deg);        transform: rotate(240deg);    }
+    75% {        -webkit-transform: rotate(270deg);        transform: rotate(270deg);    }
+    83.3% {        -webkit-transform: rotate(300deg);        transform: rotate(300deg);    }
+    91.6% {    	-webkit-transform: rotate(330deg);    	transform: rotate(330deg);    }
+    100% {        -webkit-transform: rotate(360deg);        transform: rotate(360deg);    }
+}
+/*笔记框遮罩*/
+.modal-mark{
+    position: fixed;
+    left: 0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color:rgba(0,0,0,0.4);
+    z-index: 9999;
+    display: none;
+}
+/*笔记框*/
+.mark {
+    position: absolute;
+    left: 500px;
+    top: 300px;
+    z-index: 10000;
+    width: 430px;
+    background: #f5f5f5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.mark .js_close {
+    background: url(/image/mg2.png);
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #e5e5e5;
+}
+.mark .r2 {
+    cursor: move;
+    height: 36px;
+    width: 100%;
+    background: #337ab7;
+    color: #fff;
+    text-indent: 15px;
+    line-height: 36px;
+    font-size: 14px;
+    font-family: '宋体';
+}
+.ediatian {
+    margin-bottom: 5px;
+}
+.tabContent {
+    background: #f5f5f5;
+    width: 202px;
+    height: 325px;
+    left: 160px;
+}
+.tabContent li {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-image: url(/image/math.png);
+    background-repeat: no-repeat;
+    float: left;
+    list-style: none;
+    cursor: pointer;
+}
+.mark .r1 {
+    float: left;
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #d5d5d5;
+    border-top: 0;
+}
+#editor {
+    height: 98px;
+    width: 390px;
+    background-color: white;
+    border-collapse: separate;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 4px;
+    box-sizing: content-box;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    outline: none;
+    font-size: 1.4rem;
+    overflow-x: hidden;
+}
+.mark .addbtn {
+    width: 80px;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: url(../image/mg3.png);
+    color: #fff;
+    margin-top: 12px;
+    font-size: 14px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+}
+.icon-jme {
+    background-image: url(/image/jme.png);
+    background-repeat: no-repeat;
+    background-position: -2px 1px;
+    padding: 3px 6px;
+}
+.mark .addbtn {
+    width: 80px;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: url(/image/mg3.png);
+    color: #fff;
+    margin-top: 12px;
+    font-size: 14px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+    display: none;
+}
+#mark .mark-title{
+    padding: 0 10px;
+}
+#mark div.mock-tip {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+#mark div.mock-txt {
+    height: 30px;
+    padding: 4px;
+    color: #363636;
+    background-color: #fff;
+    font-size: 1.4rem;
+    outline: none;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+.queen {
+    float: right;
+    margin-top: 12px;
+    display: none;
+}
+#fremove {
+    margin-top: 12px;
+    display: none;
+}
+/*new 右边笔记框*/
+#booknoteBox{
+    position: fixed;
+    top: 20px;
+    right:20px;
+    z-index: 999;
+    font-size: 14px;
+}
+div.reading_mode {
+    width: 261px;
+    line-height: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+div.reading_mode a{
+    color: #333;
+    display: block;
+}
+div.reading_mode > div.row {
+    border: 1px solid #666666;
+    cursor: pointer;
+}
+div.reading_mode div.cur {
+    background-color: #666666;
+    color: #fff;
+    padding: 0px;
+    text-align: center;
+}
+div.reading_mode div.col-xs-4:hover {
+    background-color: #666666;
+    transition: all 0.5s;
+}
+div.reading_mode div.col-xs-4:hover{
+    color: #fff;
+    transition: all 0.5s;
+}
+div.bituise {
+    width: 260px;
+    margin-top: 12px;
+    border-top: 1px solid #ccc;
+}
+div.bituise div.bituise_list {
+    overflow: hidden;
+    padding: 3px 0px;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+}
+div.bituise_list div.list {
+    text-align: center;
+    height: 100%;
+    width: 86px;
+    overflow: hidden;
+}
+div.bituise_list div.list a {
+    display: block;
+    height: 100%;
+    padding-top: 40px;
+}
+div.bituise_list div.list_border {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+div.bituise_list div.list a.mybiji {
+    background: url(/image/bijih.png) no-repeat center 6px;
+}
+div.bituise_list div.active a.mybiji {
+    background: url(/image/biji.png) no-repeat center 6px;
+}
+div.bituise_list div.list a.tuijian {
+    background: url(/image/tuijianh.png) no-repeat center 6px;
+}
+div.bituise_list div.active a.tuijian {
+    background: url(/image/tuijian.png) no-repeat center 6px;
+}
+div.bituise_list div.list a.shezhi {
+    background: url(/image/shezhih.png) no-repeat center 6px;
+}
+div.bituise_list div.active a.shezhi {
+    background: url(/image/shezhi.png) no-repeat center 6px;
+}
+div.rcontent {
+    overflow: hidden;
+    background-color: #e6e6e6;
+    border: 1px solid #cccccc;
+}
+div.rcontent div.bz_head {
+    width: 220px;
+    margin: 0 auto;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #ccc;
+}
+div.rcontent div.bz_head span.order:hover, div.rcontent div.bz_head span.cur {
+    background-color: #5bc0de;
+}
+div.rcontent div.bz_head span.order {
+    display: block;
+    width: 22px;
+    height: 22px;
+    line-height: 20px;
+    border-radius: 100%;
+    background-color: #999999;
+    text-align: center;
+    margin-top: 15px;
+    color: #fff;
+    margin-left: 6px;
+    cursor: pointer;
+}
+div.rcontent div.bz_head span {
+    float: right;
+}
+ul#overview{
+    display: block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    list-style-type: none;
+    overflow: auto;
+}
+ ul#overview li{
+    border-bottom: 1px dashed #bfbfbf;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 4px 4px;
+}
+ul#overview li:hover{
+    background-color: #fafafa;
+}
+ ul#overview li div.item-summary{
+    line-height: 24px;
+    font-size: 14px;
+    color: #4c4c4c;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+ul#overview li div.item-customstr{
+    border-left: 2px solid #999;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #666;
+    line-height: 24px;
+    font-size: 14px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: auto;
+}
+div.rcontent div.main {
+    display: none;
+}
+.bz_setting {
+    cursor: pointer;
+    text-align: center;
+    line-height: 55px;
+    min-height: 55px;
+    border-bottom: 1px solid #fff;
+    width: 220px;
+    margin-left: 15px;
+}
+.allpingzhu {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 0px;
+    height: 100%;
+    background-color: #E0DCCA;
+    box-shadow: 1px 1px 10px #666;
+    overflow: hidden;
+}
+.allpingzhu .booknote-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+    padding-left: 20px;
+    background-color: #ccc;
+}
+.allpingzhu .booknote-title .close {
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.allpingzhu .booknote-container {
+    clear: both;
+    margin: 20px auto;
+}
+.booknote-container .viewport {
+    overflow: hidden;
+    position: relative;
+}
+.allpingzhu .booknote-container .overview {
+    list-style: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 0px;
+    padding: 0px 10px;
+    width: 100%;
+}
+
+.allpingzhu .booknote-container .overview  li{
+    border-bottom: 1px dashed #bfbfbf;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 4px 4px;
+}
+.allpingzhu .booknote-container .overview  li div.item-summary{
+    line-height: 24px;
+    font-size: 14px;
+    color: #4c4c4c;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.allpingzhu .booknote-container .overview li div.item-customstr{
+    border-left: 2px solid #999;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #666;
+    line-height: 24px;
+    font-size: 14px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.booknote-container .viewport .scroll_bar {
+    background-color: #D1CDBA;
+    height: 100%;
+    width: 8px;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-radius: 4px;
+}
+/*笔记方块*/
+.note-mark{
+    cursor: pointer;
+}
+.note-mark:hover path{
+    fill-opacity: 1;
+}
+#overview li.other-user{
+    background-color: #ccc;
+}
+#overview li.active{
+    background-color: rgb(102, 204, 204);
+}
+
+
+/*页面公共类*/
+.bgcolor-C0504D {
+    background: #C0504D !important;
+}
+.color-C0504D {
+    color: #C0504D !important;
+}
+.bgcolor-4F81BD {
+    background: #4F81BD !important;
+}
+.color-4F81BD {
+    color: #4F81BD !important;
+}
+.bgcolor-9BBB59 {
+    background: #9BBB59 !important;
+}
+.color-9BBB59 {
+    color: #9BBB59 !important;
+}
+.bgcolor-8064A2 {
+    background: #8064A2 !important;
+}
+.color-8064A2 {
+    color: #8064A2 !important;
+}
+.bgcolor-F79646 {
+    background: #F79646 !important;
+}
+.color-F79646 {
+    color: #F79646 !important;
+}
+.bgcolor-000000 {
+    background: #000000 !important;
+}
+.color-000000 {
+    color: #000000 !important;
+}
+/*base public*/
+html{font-size:62.5%;}
+body{font-size:62.5%;height: 100%;font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+a {text-decoration: none;}
+a:hover {text-decoration:none;}
+a:focus,*:focus {outline:none;}
+a:link {text-decoration: none;}
+.clearfix:before,.clearfix:after {content:"";display:table;}
+.clearfix:after {clear:both;overflow:hidden;}
+.clearfix {zoom:1; /* for ie6 & ie7 */}
+.clear {clear:both;display:block;font-size:0;height:0;line-height:0;  overflow:hidden;}
+svg{display: block}
+
+/*分页CSS*/
+body.bodyDistribution{
+    overflow-x: hidden;
+    overflow-y:auto;
+}
+body.bodyDistribution #containerMain{
+    overflow: hidden;
+    padding: 0;
+}
+body.bodyDistribution #containerSvg{
+    width: 100000px;
+}
+body.bodyDistribution .mainSvg,body.bodyDistribution #containerSvg > div{
+    float: left;
+}
+/*按钮*/
+.fb_button{
+    position:absolute;
+    left:-40px;
+    top:80px;
+    display: none;
+}
+.fb_button >div {
+    font-size: 36px;
+    height: 60px;
+}
+.fb_button .glyphicon {
+    color: #999;
+    cursor: pointer;
+}
+.fb_button .glyphicon:hover{
+    color: #333;
+ }
+/*end*/
+/*笔记显示*/
+.note-markzs {
+    width: 230px;
+    padding: 4px 10px 8px 8px;
+    border: 1px solid #d3d3d3;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    background: #fff;
+    position:absolute;
+    left:100px;
+    display: none;
+    font-size: 14px;
+    z-index: 9999;
+}
+.note-markzs .tkm-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
+    border-color: transparent #d3d3d3 transparent transparent;
+    left: -12px;
+    top: 12px
+}
+.note-markzs .tkm-triangle:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 11px 11px 11px 0;
+    border-color: transparent #fff transparent transparent;
+    top: -11px;
+    left: 1px
+}
+.note-markzs .triangle-content{
+    border-bottom: 1px dashed #ccc;
+}
+#triangleCustomstr img{
+    max-width: 210px;
+    height: auto;
+}

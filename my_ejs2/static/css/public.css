@@ -1,0 +1,104 @@
+/*登录注册modal*/
+.login-field {
+    display: block;
+}
+.login-field>.glyphicon {
+    top: 28px;
+    left: 10px;
+    font-size: 1.6rem;
+}
+.login-field input {
+    padding-left: 30px;
+}
+/*svg h1*/
+#containerSvg > div {
+    font-size: 1.4rem;
+}
+#containerSvg > div > svg{
+    margin:0 auto;
+}
+#containerSvg foreignobject{
+    -moz-user-select:none;/*火狐*/
+    -webkit-user-select:none;/*webkit浏览器*/
+    -ms-user-select:none;/*IE10*/
+    -khtml-user-select:none;/*早期浏览器*/
+    user-select:none;
+}
+.forh1{
+    color: rgb(51, 51, 51);
+    font-weight: normal;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px 0px 3px;
+    text-align: center;
+    max-height: 280px;
+    font-family: 微软雅黑;
+    border-bottom-style: ridge;
+    padding: 0px 50px 20px;
+    overflow: hidden;
+    border-width: 8px;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+}
+#containerSvg > svg,#containerSvg > div{
+    margin: 0 auto;
+}
+#containerSvg  div.obj{
+    margin: 10px auto;
+}
+/*推荐*/
+#recommendedcontent{
+    display: none;
+}
+#recommendedcontent ul {
+    padding: 6px;
+    margin: 0px;
+    display: block;
+    list-style-type: none;
+    overflow: auto;
+}
+#recommendedcontent ul li {
+    list-style-type: none;
+}
+#recommendedcontent a {
+    display: block;
+    color: #666;
+    padding-bottom: 10px;
+}
+#recommendedcontent a:hover{
+    color: #333;
+}
+/*方块和评注效果*/
+.linePen > .rect:hover{
+    opacity: 0.3;
+    cursor: pointer;
+}
+.linePen > .line:hover{
+    opacity: 0.6;
+    stroke-width:4;
+    cursor: pointer;
+}
+/*连线题,分类题*/
+.linkLeft {
+    fill: #5bc0de;
+    fill-opacity: 0.8;
+    stroke: none;
+    cursor: pointer;
+}
+.linkRight {
+    fill: #5cb85c;
+    fill-opacity: 0.8;
+    stroke: none;
+    cursor: pointer;
+}
+#classfiedQuestion,#linkedQuestion{
+    margin: 10px auto;
+}
+#classfiedQuestion text,#linkedQuestion text{
+    pointer-events: none;
+    font-size: 20px;
+    -webkit-user-select: none;
+}
+.LinkFiedClassQuestion{
+    margin: 0 auto;
+}

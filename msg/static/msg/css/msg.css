@@ -1,0 +1,1050 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-color: #ccc;
+}
+#thinkMsg {
+    font: 14px/1 'Arial','Microsoft YaHei';
+    color: #333;
+    z-index: 9998;
+}
+#thinkMsg > .im_fold{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 270px;
+    height: 40px;
+    box-shadow: -3px -2px 8px -1px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+#thinkMsg > .im_fold:hover{
+    box-shadow: -3px -2px 8px -1px rgba(0,0,0,0.4);
+}
+#thinkMsg > .im_fold > .fold_bg{
+    background: #f0f1f4;
+    filter: alpha(opacity=95);
+    opacity: 0.95;
+    border-radius: 2px 0 0 2px;
+    height: 100%;
+}
+#thinkMsg > .im_fold > .fold_cont{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 40px;
+    padding-left: 40px;
+    background: url("../image/LiveBooks.png") no-repeat 10px center;
+}
+#thinkMsg > .im_chat_window{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: none;
+    width: 270px;
+    height: 400px;
+    overflow: hidden;
+    background: #f2f2f5;
+    box-shadow: -3px -2px 8px -1px rgba(0,0,0,0.2);
+    border-radius: 2px 0 0 2px;
+}
+#thinkMsg > .im_chat_window >.im_chat_head{
+    height: 38px;
+    line-height: 38px;
+    border-bottom: 1px #d9d9d9 solid;
+    background: #fff;
+    overflow: hidden;
+}
+#thinkMsg > .im_chat_window >.im_chat_head > li{
+    float: left;
+    width: 25%;
+    cursor: pointer;
+    text-align: center;
+}
+#thinkMsg > .im_chat_window >.im_chat_head i:hover,#thinkMsg > .im_chat_window >.im_chat_head li.active i{
+    font-size: 22px;
+    color: #8a6d3b;
+}
+#thinkMsg > .im_chat_window > .im_chat_body{
+    height: 360px;
+    width: 300%;
+}
+.im_chat_body > .friends {
+    height: 100%;
+    width: 270px;
+    position: relative;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+    float: left;
+}
+/*好友*/
+.z-panel .panel_item {
+    border-bottom: 1px solid #eaeeef;
+    overflow: hidden;
+    height: 57px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.z-panel li {
+    list-style: none;
+}
+.z-panel .panel_avatar {
+    float: left;
+}
+.z-panel .panel_avatar .panel_image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: top;
+}
+.z-panel .panel_text {
+    margin: 0 0 0 60px;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+.z-panel .panel_text .panel_single-row {
+    height: 40px;
+    line-height: 40px;
+    color: #3a4a59;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.z-panel .panel_item .badge {
+    float: right;
+    display: none;
+    margin-top: 10px;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 10px;
+}
+.z-team .panel_team .badge{
+    float: right;
+    margin-top: 6px;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 10px;
+}
+    /*群组聊天*/
+#imChatBody .create-group{
+    font-size: 16px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-bottom: 1px solid #eaeeef;
+    cursor: pointer;
+}
+#imChatBody .create-group:hover{
+    background-color: #eeeeee;
+}
+.z-team .panel_team{
+    border-bottom: 1px solid #eaeeef;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+}
+.z-team .panel_team .panel_head{
+    padding: 8px 10px;
+}
+.z-team .panel_team .panel_head i.iconfont{
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+.z-team .panel_team .panel_head:hover{
+    background-color: #efefef;
+}
+.z-team .panel_team .panel_head:hover i{
+    color: #666;
+}
+.z-team .panel_team .panel_head span{
+    vertical-align: text-bottom;
+    display: inline-block;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.z-team .panel_group{
+   padding-left: 8px;
+    display: none;
+}
+.z-team .panel_group_item{
+    cursor: pointer;
+    overflow: hidden;
+    padding: 4px 0;
+}
+.z-team li {
+    list-style: none;
+}
+.z-team .panel_avatar {
+    float: left;
+}
+.z-team .panel_avatar .panel_image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: top;
+}
+.z-team .panel_text {
+    margin: 0 0 0 40px;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+.z-team .panel_text .panel_single-row {
+    height: 30px;
+    line-height: 30px;
+    color: #3a4a59;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.panel_item:hover,.panel_group_item:hover{
+    background-color: #efefef;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    box-shadow: 1px 1px 5px 1px #8a6d3b inset;
+}
+.panel_item:hover .panel_single-row,.panel_group_item:hover .panel_single-row{
+    color: #8a6d3b;
+}
+/*单对单聊天界面*/
+.one-interface{
+    min-width: 450px;
+    width: 450px;
+    background-color: #f2f2f2;
+    position: fixed;
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px 1px #999;
+    display: none;
+}
+.one-interface:hover{
+    box-shadow: 1px 1px 8px 2px #666;
+}
+/*取组聊天界面*/
+.group-interface{
+    min-width: 600px;
+    width: 800px;
+    background-color: #f2f2f2;
+    position: fixed;
+    border-radius: 4px;
+    box-shadow: 1px 1px 5px 1px #999;
+    overflow: hidden;
+}
+.group-interface:hover{
+    box-shadow: 1px 1px 8px 2px #8a6d3b;
+}
+.move-drag{
+    width: 3px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 45px;
+    background-color: #999;
+    cursor: e-resize;
+    margin-left: -2px;
+    z-index: 1000000;
+}
+.group-interface > .interface-bodyer{
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+.group-interface > .interface-bodyer-one{
+    border-right: 1px solid #ccc;
+}
+.group-interface .whiteboard{
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+    height: 260px;
+}
+.group-interface .group-members{
+    height: 140px;
+}
+.group-interface .group-members .header{
+    border-top: 1px solid #ccc;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.group-interface .group-members .bodyer{
+    height: 115px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.group-interface .group-members .panel_item {
+    border-bottom: 1px solid #eaeeef;
+    overflow: hidden;
+    height: 38px;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.group-interface .group-members .panel_item.off-line{
+    opacity: 0.5;
+}
+.group-interface .group-members li {
+    list-style: none;
+}
+.group-interface .group-members .panel_avatar {
+    float: left;
+}
+.group-interface .group-members .panel_image {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    vertical-align: top;
+}
+.group-interface .group-members .panel_text {
+    margin: 0 0 0 60px;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+.group-interface .group-members .panel_single-row {
+    height: 26px;
+    line-height: 26px;
+    color: #3a4a59;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*公共聊天*/
+.interface-header {
+    padding: 5px;
+    height: 45px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #d2d2d2;
+    cursor: move;
+}
+.interface-header .user-photo{
+    float: left;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+}
+.interface-header .user-name{
+    float: left;
+    padding-left: 10px;
+    font-size: 14px;
+    display: block;
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.interface-bodyer{
+    min-height:400px;
+    width: 100%;
+}
+.interface-bodyer .chat-content {
+    width: 100%;
+    overflow-y: auto;
+    padding: 10px 3%;
+    height: 260px;
+    box-sizing: border-box;
+}
+.interface-bodyer .chat-content .u-msgTime{
+    text-align: center;
+    font-size: 12px;
+    color: #aaaaaa;
+    line-height: 30px;
+}
+.chat-content .item {
+    overflow: hidden;
+    padding: 4px 0 10px 0;
+}
+.item-you .img, .item-me .img {
+    width: 40px;
+    height: 40px;
+}
+.chat-content .img {
+    border-radius: 50%;
+}
+.item-me > img.img  {
+    float: right;
+    margin-left: 14px;
+}
+.item-you > img.img {
+    float: left;
+    margin-right: 14px;
+}
+.msg {
+    position: relative;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid;
+}
+.item-me .msg-text {
+    float: right;
+    color: #fff;
+    background: #5cacde;
+}
+.item-you .msg-text {
+    float: left;
+    color: #6b8299;
+    background: #eaeeef;
+    border-color: #eee;
+    -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.06);
+}
+.item-me .msg::before {
+    background: none;
+}
+.item-me .msg::after {
+    left: 100%;
+    border-left: 5px solid #5cacde;
+}
+.item-you .msg::before {
+    right: 100%;
+    border-right: 5px solid #eaeeef;
+}
+.item-you .msg::after {
+    background: none;
+}
+.msg::before, .msg::after {
+    content: ' ';
+    position: absolute;
+    top: 11px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    width: 0;
+    height: 0;
+}
+.msg .box {
+    position: relative;
+    padding: 7px 12px;
+    zoom: 1;
+}
+.msg .cnt {
+    position: relative;
+    min-height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: 14px;
+}
+.msg .cnt .mathquill-rendered-math{
+    color: #000 !important;
+    font-size: 18.4px !important;
+}
+.f-maxWid {
+    max-width: 270px;
+    _width: 270px;
+}
+.f-maxWid iframe,.f-maxWid img{
+    vertical-align: middle;
+}
+/*聊天工具*/
+.interface-bodyer .chat-tool{
+    border-top: 1px solid #ccc;
+    box-sizing: border-box;
+    padding-top: 4px;
+    font-size: 0;
+    position: relative;
+}
+.interface-bodyer .chat-tool > a{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: top;
+    _overflow: hidden;
+}
+.interface-bodyer .chat-tool a:hover {
+    opacity: .7;
+}
+.chat-tool-ico{
+    background: url(../image/icons.png) no-repeat;
+    cursor: pointer;
+}
+.chat-tool-ico.active{
+    box-shadow: 1px 1px 3px #666 inset;
+}
+.chat-tool-emoji{
+    background-position: 3px 3px;
+}
+.chat-tool-math{
+    background-position: -16px 3px;
+}
+/*聊天框*/
+.editor{
+    border: 0;
+    outline: 0;
+    cursor: text;
+    padding: 6px 10px;
+    overflow: auto;
+    display: block;
+    word-wrap: break-word;
+    font-size: 14px;
+    height: 80px;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 5px #ccc inset;
+}
+.interface-bodyer .btn {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.btn-send{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+}
+.btn-send:hover {
+    color:#fff;
+    background-color:#449d44;
+    border-color:#398439
+}
+/*关闭放大缩小*/
+.interface-setwin {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 0;
+    line-height: initial;
+}
+.interface-setwin .interface-min cite {
+    position: absolute;
+    width: 14px;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    margin-top: -1px;
+    background-color: #2E2D3C;
+    cursor: pointer;
+    _overflow: hidden;
+}
+.interface-setwin .interface-min:hover cite{
+    background-color:#2D93CA;
+}
+.interface-setwin .interface-max {
+    background-position: -32px -40px;
+}
+.interface-setwin .interface-max:hover{
+    background-position:-16px -40px;
+}
+.interface-setwin .interface-maxmin {
+    background-position: -65px -40px;
+}
+.interface-setwin .interface-maxmin:hover{
+    background-position:-49px -40px;
+}
+.interface-setwin .interface-close1 {
+    background-position: 0 -40px;
+    cursor: pointer;
+}
+.interface-setwin .interface-close1:hover{
+    opacity:0.7;
+}
+.interface-setwin .interface-close2{
+    position:absolute;
+    right:-28px;
+    top:-28px;
+    width:30px;
+    height:30px;
+    margin-left:0;
+    background-position:-149px -31px;
+    *right:-18px;
+    _display:none;
+}
+.interface-setwin .interface-close2:hover{
+    background-position:-180px -31px;
+}
+.interface-setwin a {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: top;
+    _overflow: hidden;
+}
+.interface-ico {
+    background: url(../../image/icon.png) no-repeat;
+}
+/*阿里矢量图*/
+@font-face {
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_1463473892_7180343.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1463473892_7180343.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1463473892_7180343.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1463473892_7180343.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1463473892_7180343.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-transition: all 0.1s ease-in;
+    -webkit-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+}
+/*public.css*/
+html, body, button, input, select, textarea, li {
+    font-size: 14px;
+    font-family: Tahoma, Helvetica, 'Microsoft Yahei', 微软雅黑, Arial, STHeiti;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+ol, ul {
+    list-style: none;
+}
+address, caption, cite, code, dfn, em, th, i {
+    font-style: normal;
+    font-weight: normal;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+/* 清除浮动 */
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+.clearfix {
+    zoom: 1; /* for ie6 & ie7 */
+}
+.clear {
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+
+/*表情CSS*/
+.qqFace{
+    position: absolute;
+    left: 0;
+    bottom: 24px;
+    margin-top:4px;
+    background:#fff;
+    padding:2px;
+    border:1px #dfe6f6 solid;
+    display: none
+}
+.qqFace table td{
+    padding:0;
+}
+.qqFace table td img{
+    cursor:pointer;
+    border:1px #fff solid;
+}
+.qqFace table td img:hover{
+    border:1px #0066cc solid;
+}
+/*数学公式列表CSS*/
+ .edui-formula-wrapper {
+    padding: 13px;
+    position: absolute;
+    left: 0;
+    bottom: 24px;
+    background-color: #fff;
+    border: 1px #dfe6f6 solid;
+    display: none;
+}
+ .edui-formula-wrapper .edui-tab-nav{
+    height: auto;
+    *height: 31px;
+}
+.edui-tab-nav {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+    list-style: none;
+    height: 30px;
+}
+.edui-tab-nav .edui-tab-item {
+    float: left;
+    margin-bottom: -1px;
+    margin-top: 1px;
+    margin-top: 0\9;
+}
+.edui-tab-nav .edui-tab-item.edui-active .edui-tab-text {
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    background-color: #fff;
+    padding: 8px 12px;
+    color: #555;
+    cursor: default;
+}
+.edui-tab-nav .edui-tab-item .edui-tab-text {
+    display: block;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    color: #08c;
+    text-decoration: none;
+    outline: 0;
+    _border: 1px solid #fff;
+    cursor: pointer;
+}
+ .edui-formula-wrapper .edui-tab-text {
+    font-size: 12px;
+}
+ .edui-formula-wrapper .edui-formula-clearboth {
+    clear: both;
+    width: 0;
+    height: 0;
+}
+ .edui-formula-wrapper .edui-tab-pane ul {
+    margin: 0px;
+    padding: 0px;
+}
+.edui-formula-wrapper .edui-tab-pane ul li:hover{
+    box-shadow: 1px 1px 4px 1px #ccc;
+}
+.edui-formula-wrapper .edui-tab-content {
+    padding: 5px 0px 0px 0px;
+}
+ .edui-formula-wrapper .edui-tab-pane .edui-formula-latex-item {
+    display: block;
+    float: left;
+    margin: 0px 3px 3px 0px;
+    width: 30px;
+    height: 30px;
+    border:1px solid #cccccc;
+    background-image: url("../image/formula.png");
+    cursor: pointer;
+}
+.edui-tab-content .edui-tab-pane.edui-active {
+    display: block;
+}
+.edui-tab-content .edui-tab-pane {
+    padding: 1px;
+    position: relative;
+    display: none;
+    background-color: #fff;
+    clear: both;
+}
+.editor iframe.mathquill-embedded-latex {
+    border: 0;
+    padding: 0;
+    display: inline;
+    margin: 0;
+    background: 0 0;
+    vertical-align: middle;
+    width: 0;
+    height: 0;
+}
+/*创建群讨论组CSS*/
+.add-class-modal{
+    padding: 15px;
+    MARGIN: auto;
+}
+.add-class-modal .form-group {
+    margin-bottom: 15px;
+}
+.add-class-modal label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+.add-class-modal .form-control {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.add-class-modal .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+.add-class-modal .modal-footer .btn+.btn {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+.add-class-modal .btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.add-class-modal .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+/*添加好友css*/
+.mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,.65);
+    z-index: 1000;
+    display: none;
+}
+.m-dialog {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-left: -193px;
+    margin-top:-126px;
+    width: 386px;
+    height: 252px;
+    background-color: #fff;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    overflow: hidden;
+    display: none;
+    z-index: 1001;
+}
+.m-dialog .title{
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+    border: none;
+    background-color: #e5f4ff;
+    color: #666;
+    position: relative;
+    border-bottom: 1px solid #ced4d9;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+}
+.m-dialog .icon-close {
+    line-height: 1;
+    font-size: 20px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+.m-dialog .btns{
+    position: absolute;
+    bottom: 0;
+    background-color: #fff;
+    width: 100%;
+    padding:22px 0;
+    border-top: 1px solid #e0e6eb;
+}
+.m-dialog .content{
+    padding-top: 20px;
+}
+.m-dialog .content .info{
+    display: none;
+    padding: 10px 28px;
+}
+.m-dialog .info img{
+    float: left;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+.m-dialog .info .desc{
+    float: left;
+    text-align: left;
+    padding: 10px
+}
+.m-dialog .info p{
+    color: #3a4a59;
+    font-size: 14px;
+}
+.m-dialog .info span{
+    font-size: 12px;
+    color: #6b8299;
+}
+.m-dialog .ipt{
+    height: 34px;
+    width: 300px;
+    border: 1px solid #e0e6eb;
+    font-size: 14px;
+    padding: 0 10px;
+}
+.m-dialog .tip{
+    padding: 10px;
+    display: none;
+}
+.tc {
+    text-align: center;
+}
+.btn {
+    border: 0;
+    font-size: 1.0625rem;
+    color: #fff;
+    cursor: pointer;
+}
+/*添加好友（不是好友）*/
+.m-dialog.noFriend .btns .cancel,.m-dialog.noFriend .btns .search,.m-dialog.noFriend .btns .done,.m-dialog.noFriend .btns .chat，.m-dialog.noFriend .btns .blacklist{
+    display: none;
+}
+.m-dialog.noFriend .btns .back,.m-dialog.noFriend .btns .add{
+    display: inline-block;
+}
+.m-dialog.noFriend .content .ipt,.m-dialog.noFriend .content .tip{
+    display: none;
+}
+.m-dialog.noFriend .content .info{
+    display: block;
+}
+.m-dialog .btns .add,.m-dialog .btns .back,.m-dialog .btns .done,.m-dialog .btns .chat,.m-dialog .btns .blacklist{
+    display: none;
+}
+/*添加好友（是好友）*/
+.m-dialog.friend .btns .cancel,.m-dialog.friend .btns .search,.m-dialog.friend .btns .done,.m-dialog.friend .btns .add,.m-dialog.friend .btns .blacklist{
+    display: none;
+}
+.m-dialog.friend .btns .back,.m-dialog.friend .btns .chat{
+    display: inline-block;
+}
+.m-dialog.friend .content .ipt,.m-dialog.friend .content .tip{
+    display: none;
+}
+.m-dialog.friend .content .info{
+    display: block;
+}
+/*添加好友 添加完成*/
+.m-dialog.done .tip{
+    display: block;
+}
+.m-dialog.done .ipt,.m-dialog.done .info{
+    display: none;
+}
+.m-dialog.done .btns .cancel,.m-dialog.done .btns .search,.m-dialog.done .btns .add,.m-dialog.done .btns .chat,.m-dialog.done .btns .blacklist{
+    display: none;
+}
+.m-dialog.done .btns .back,.m-dialog.done .btns .done{
+    display: inline-block;
+}
+.m-dialog .btns {
+    position: absolute;
+    bottom: 0;
+    background-color: #fff;
+    width: 100%;
+    padding: 22px 0;
+    border-top: 1px solid #e0e6eb;
+}
+.btn-cancel,.btn-del {
+    border: 1px solid #ccc;
+    background-color: #eee;
+    color: #666;
+    width: 100px;
+    line-height: 34px;
+    margin-right: 14px;
+}
+.btn-ok {
+    background-color: #0888ff;
+    width: 100px;
+    line-height: 34px;
+    border: 1px solid #0070d9;
+}
+.radius4px {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}

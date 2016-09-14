@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="demo">
+    <meta name="keyword" content="demo">
+    <link rel="stylesheet" type="text/css" href="../../static/msg/css/msg.css">
+    <link rel="stylesheet" type="text/css" href="../../static/mathquill/mathquill.css">
+    <title>即时聊天</title>
+</head>
+<body>
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/layer/layer.js"></script>
+    <script src="../../static/msg/js/socket.io.js"></script>
+    <script src="../../static/mathquill/mathquill.js"></script>
+    <!-- msg.js -->
+    <script src="../../static/msg/js/msg.js"></script>
+    <script>
+        $(function(){
+            //模拟用户名
+            var id = prompt('输入你的电话号码：',"");
+            if(id == null || id == ""){
+                setTimeout(function(){
+                    location.reload();
+                    return false;
+                },500)
+
+            }
+            if(/^[0-9]*$/.test(id)){
+                var options = {
+                    id : id
+                };
+
+                //初始化
+                msg.init(options);
+            }else{
+                alert("请输入纯数字");
+                location.reload();
+            }
+
+
+        })
+    </script>
+</body>
+</html>

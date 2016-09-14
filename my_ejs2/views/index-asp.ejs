@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<title>LiveBooks</title>
+<link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/index-asp.css" rel="stylesheet">
+
+<!--msg-->
+<link rel="stylesheet" type="text/css" href="/msg/css/msg.css">
+<link rel="stylesheet" type="text/css" href="/mathquill/mathquill.css">
+
+</head>
+<body>
+    <iframe name="content" id="content"  width="100%" height="630"   scrolling="auto" frameborder=0  target="content" src="bookContent"></iframe>
+    <!--恒定头-->
+    <div class="navbar navbar-default navbar-fixed-top" id="header_top">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand" href="/">LiveBooks</a> </div>
+        <div class="navbar-collapse collapse" role="navigation" aria-expanded="false">
+          <ul class="nav navbar-nav navbar-right" id="userExit">
+            <li><a href="javascript:void(0)" id="userLoginOut">退出登录</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" id="userlogin">
+            <li> <a href="#" data-toggle="modal" data-target="#loginModal">登录</a> </li>
+            <li> <a href="#" data-toggle="modal" data-target="#submitLoginModal">注册</a> </li>
+          </ul>
+          <ul class="nav navbar-nav hide">
+            <li> <a href="#">首页</a> </li>
+            <li> <a href="">我的思米</a> </li>
+            <li> <a href="#">在线教室</a> </li>
+            <li> <a href="#">录播课程</a> </li>
+            <li> <a href="#">数学实验</a> </li>
+            <li> <a href="#">学友社区</a> </li>
+            <li> <a href="javascript:void(0)" onclick="javascript:self.parent.frames['content'].location = 'bookcontent.html'">我的电子书</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-warning fade in" id="warning_info" style="display:none">
+        <button class="close" type="button" onClick='javascript:$("#warning_info").css("display","none")'>×</button>
+        <strong>您正在使用低版本浏览器，</strong> 很多功能将受到限制。
+        建议您升级到 <a href="http://www.google.cn/intl/zh-CN/chrome/" target="_blank">Chrome</a> 或以下浏览器： <a href="http://www.mozilla.org/en-US/firefox/‎" target="_blank">Firefox</a> / <a href="http://www.apple.com.cn/safari/" target="_blank">Safari</a> / <a href="http://www.opera.com/" target="_blank">Opera</a> / <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer 10</a> </div>
+    </div>
+    <!--登录Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header hide">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">用户登录</h4>
+          </div>
+          <div class="modal-body">
+            <img class="center-block" src="image/VE_logo.jpg" alt="思米教育">
+            <label class="login-field"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <input type="text" id="login_email" class="form-control" name="email" placeholder="手机号/用户名/邮箱" tabindex="0">
+            </label>
+            <label class="login-field"> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+              <input type="password" id="login_password" class="form-control" name="password" placeholder="密码">
+            </label>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" id="spellzc">快速注册</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="login">登录</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--注册Modal -->
+    <div class="modal fade" id="submitLoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">用户注册</h4>
+          </div>
+          <div class="modal-body"> <img src="image/VE_logo.jpg" class="center-block" alt="思米教育">
+            <div class="login-field"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <input type="text" id="submitLogin_email" class="form-control" name="email" placeholder="手机号/用户名/邮箱">
+            </div>
+            <div class="login-field"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <input type="text" id="submitLogin_nc" class="form-control" name="email" placeholder="昵称">
+            </div>
+            <div class="login-field"> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+              <input type="password" id="submitLogin_password" class="form-control" name="password" placeholder="密码">
+            </div>
+            <div class="login-field"> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+              <input type="password" id="submitLogin_repassword" class="form-control" name="password" placeholder="请再一次输入密码">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" id="spelldl">快速登录</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary" id="submitLogin">注册</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/jsMobile.js"></script>
+    <script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="/js/ours/jsResize.js"></script>
+    <!--msg-->
+    <script src="/layer/layer.js"></script>
+    <script src="/msg/js/socket.io.js"></script>
+    <script src="/mathquill/mathquill.js"></script>
+    <script src="/msg/js/msg.js"></script>
+
+    <script src="/js/userLogin.js"></script>
+</body>
+</html>

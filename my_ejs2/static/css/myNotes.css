@@ -1,0 +1,69 @@
+/*
+*  peng.zheng.com
+*/
+body {
+	color: #333;
+	font-family: "微软雅黑", "Microsoft YaHei";
+}
+a{
+	outline: none;
+	transition:all 1s;
+    *zoom:1;
+}
+a:focus {
+	outline: 0;
+}
+a:hover{
+	text-decoration:none;
+}
+.primary_school_header {
+	height: 61px;
+	background: #fafafa;
+	border-top: 2px solid #ccc;
+	border-bottom: 2px solid #003aa5;
+}
+.primary_school_header .img_1l {
+	padding-top: 1px;
+}
+.school_img {
+	background: url(../images/kuang.png) no-repeat top center;
+	color: #003aa5;
+	font-size: 24px;
+	height: 59px;
+	padding-top: 12px;
+	text-align: center;
+}
+.primary_school_content div.row {
+	text-align: center;
+}
+.morebook img {
+	cursor: pointer;
+	margin-bottom: 30px;
+}
+.booklist {
+	margin-top: 18px;
+	margin-bottom:10px;
+	display:block;
+}
+.booklist img:hover{
+	box-shadow: 1px 1px 10px #999;
+}
+.booklist h5:hover{
+	color:#428bca;
+}
+
+/* 超小屏幕（手机，小于 768px） */
+@media screen and (max-width:768px) {
+}
+
+/* 小屏幕（平板，大于等于 768px） */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） */
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media screen and (min-width: 1200px) {
+}

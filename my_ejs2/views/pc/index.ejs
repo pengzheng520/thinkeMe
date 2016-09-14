@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="demo">
+    <meta name="keyword" content="demo">
+    <title>PC端demo</title>
+    <!--字体CSS-->
+    <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/dist/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/MathPanel/mathquill-0.9.1/mathquill.css" rel="stylesheet" type="text/css">
+    <link href="/css/pc/index.css" rel="stylesheet" type="text/css" />
+    <!-- 移动和PC 公共CSS -->
+    <link href="/css/public.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="clearfix">
+<!-- 中间内容区域 -->
+<div class="container-main" id="containerMain">
+    <div class="container-svg" id="containerSvg">
+        <% for(var p in work) { %>
+        <% if(work[p].type == 1){ %>
+        <svg id="box_<%= work[p].chapter %>" class="mainSvg">
+            <%- work[p].content %>
+        </svg>
+        <%   }else{  %>
+        <div id="box_<%= work[p].chapter %>" class="mainDiv">
+            <%- work[p].content %>
+        </div>
+        <%   }  %>
+        <%   }  %>
+
+    </div>
+</div>
+<!-- 操作区域 -->
+<div class="control-box">
+    <div id="jia"><img src="/image/jia.png" /></div>
+    <div id="notes">笔记</div>
+    <div id="fluorescentPen">荧光笔</div>
+    <div id="drawLine">标注</div>
+    <div id="directory" title="隐藏右边目录">隐藏</div>
+</div>
+<!-- 选择颜色 -->
+<div class="select-color" id="selectColor">
+    <div class="tkm-triangle"></div>
+    <div class="tkm-triangle-colors-div">
+        <div class="tkm-title">color:</div>
+        <div class="tkm-color-menu">
+            <i class="tkm-color-option bgcolor-C0504D"></i>
+            <i class="tkm-color-option bgcolor-4F81BD"></i>
+            <i class="tkm-color-option bgcolor-9BBB59"></i>
+            <i class="tkm-color-option bgcolor-8064A2"></i>
+            <i class="tkm-color-option bgcolor-F79646"></i>
+            <i class="tkm-color-option bgcolor-000000"></i>
+        </div>
+    </div>
+</div>
+<!-- 加载提示 -->
+<div id="resourcewaiting">
+    <span class="icon"></span>
+    <span class="label">资源加载中...</span>
+</div>
+<!--  笔记框遮罩 -->
+<div class="modal-mark" id="modalMark"></div>
+<!--写笔记框-->
+<div class="mark" id="mark"> <a href="javascript:void(0)" class="js_close" id="js_close"></a>
+        <div  id="r22" class="r2">添加评注</div>
+        <div class="mark-title">
+            <div class="mock-tip">标题</div>
+            <div class="mock-txt" contenteditable="true" id="mockTxtTitle"></div>
+            <div class="mock-tip">笔记内容</div>
+        </div>
+        <div class="mark-content">
+
+            <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                <div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </div>
+                <div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                        <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                        <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                    </ul>
+                </div>
+                <div class="btn-group"> <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a> <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a> <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a> <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a> </div>
+                <div class="btn-group"> <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a> <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a> <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a> <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a> </div>
+                <div class="btn-group"> <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a> <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a> <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a> <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a> </div>
+                <div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+                    <div class="dropdown-menu input-append">
+                        <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                        <button class="btn" type="button">Add</button>
+                    </div>
+                    <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a> </div>
+                <div class="btn-group"> <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                </div>
+                <div class="btn-group"> <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a> <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a> </div>
+                <div class="btn-group ediatian" id="oclick">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="数学符号">
+                        <i class="icon-jme"></i>&nbsp;<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" id="mathli">
+                        <li><a data-edit="fontSize 5"><font size="5">常用公式</font></a></li>
+                        <li><a data-edit="fontSize 3"><font size="3">特殊字母</font></a></li>
+                        <li><a data-edit="fontSize 1"><font size="1">运算符号</font></a></li>
+                    </ul>
+                    <div class="dropdown-menu tabContent">
+                        <!--常用公式标签项-->
+                        <div class="mathBox"> </div>
+                        <!--特殊字母标签项-->
+                        <div class="mathBox" style="display:none"> </div>
+                        <!--运算符号标签项-->
+                        <div class="mathBox" style="display:none"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="r1">
+            <div id="editor"></div>
+            <a class="addbtn" href="javascript:void(0)" id="addbtn" > <span class="rb1">发布</span> </a>
+            <button type="button" class="btn btn-primary queen" id="queen" >确定</button>
+            <button type="button" class="btn btn-primary " id="fremove" >删除评注</button>
+        </div>
+</div>
+<!-- 右边笔记框 -->
+<div id="booknoteBox">
+    <div class="reading_mode">
+        <div class="row">
+            <div class="col-xs-4 distribution cur">全文阅读</div>
+            <div class="col-xs-4 distribution">分页阅读</div>
+            <div class="col-xs-4"><a href="/bookContent">退出阅读</a></div>
+        </div>
+    </div>
+    <div class="bituise">
+        <div class="bituise_list" id="bituise_list">
+            <div class="list pull-left  active">
+                <a href="javascript:void(0)" class="mybiji">我的笔记</a>
+            </div>
+            <div class="list pull-left list_border">
+                <a href="javascript:void(0)" class="tuijian">推荐资源</a>
+            </div>
+            <div class="list pull-left">
+                <a href="javascript:void(0)" class="shezhi">系统设置</a>
+            </div>
+        </div>
+        <div class="rcontent" id="bituise_rcontent">
+            <div class="main"  style="display: block;">
+                <div class="bz_head clearfix" id="bz_head">
+                    <!--<span class="order cur" id="bookorder" title="排列顺序">书</span><span>排列顺序</span>-->
+                    <span class="order cur pull-left" id="allbz" title="全部笔记">全</span>
+                    <span class="order pull-left" id="shareNotesBtn" title="分享笔记">分</span>
+                    <span class="order pull-left" id="LookNotesBtn" title="查看别人给我分享的笔记">查</span>
+                </div>
+                <ul id="overview" class="overview">
+                </ul>
+            </div>
+            <div class="main" id="recommendedcontent">
+                <ul></ul>
+            </div>
+            <div class="main">
+                <div class="bz_setting" id="showHideLine">隐藏标注</div>
+                <div class="bz_setting" id="showHidePen">隐藏荧光笔</div>
+                <div class="bz_setting" id="showHideNotes">隐藏笔记</div>
+            </div>
+        </div>
+    </div>
+    <div class="allpingzhu" id="allpingzhu">
+        <div class="booknote-title"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>笔记</div>
+        <div class="booknote-container">
+            <div class="viewport" id="viewport">
+                <ul class="overview" id="alloverview"></ul>
+                <div class="scroll_bar" id="scroll_bar"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 分布翻滚按钮 -->
+    <div class="fb_button" id="fb_button">
+        <div class="previous-arrow" id="left-cover"><span class="glyphicon glyphicon-menu-left"></span></div>
+        <div class="next-arrow" id="right-cover"><span class="glyphicon glyphicon-menu-right"></span></div>
+    </div>
+</div>
+<!--登录Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header hide">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">用户登录</h4>
+            </div>
+            <div class="modal-body">
+                <img class="center-block" src="/image/VE_logo.jpg" alt="思米教育">
+                <label class="login-field"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <input type="text" id="login_email" class="form-control" name="email" placeholder="手机号/用户名/邮箱" tabindex="0">
+                </label>
+                <label class="login-field"> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    <input type="password" id="login_password" class="form-control" name="password" placeholder="密码">
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" id="spellzc">快速注册</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="login">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--注册Modal -->
+<div class="modal fade" id="submitLoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">用户注册</h4>
+            </div>
+            <div class="modal-body"> <img src="/image/VE_logo.jpg" class="center-block" alt="思米教育">
+                <div class="login-field"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <input type="text" id="submitLogin_email" class="form-control" name="email" placeholder="手机号/用户名/邮箱">
+                </div>
+                <div class="login-field"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <input type="text" id="submitLogin_nc" class="form-control" name="email" placeholder="昵称">
+                </div>
+                <div class="login-field"> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    <input type="password" id="submitLogin_password" class="form-control" name="password" placeholder="密码">
+                </div>
+                <div class="login-field"> <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                    <input type="password" id="submitLogin_repassword" class="form-control" name="password" placeholder="请再一次输入密码">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" id="spelldl">快速登录</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="submitLogin">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 笔记弹出框 -->
+<div class="note-markzs" id="noteMarkzs">
+    <div class="tkm-triangle"></div>
+    <div class="tkm-triangle-content">
+          <div class="triangle-content" id="triangleSummary"></div>
+          <div id="triangleCustomstr"></div>
+    </div>
+</div>
+<script src="/js/jsMobile.js"></script>
+<!--our js file-->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/pc/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="/MathPanel/mathquill-0.9.1/mathquill.js"></script>
+<script src="/js/ours/jsResize.js" type="text/javascript"></script>
+<script src="/js/ours/myJS.js" type="text/javascript"></script>
+<script src="/js/ours/mySVG.js" type="text/javascript"></script>
+<script src="/js/ours/mySVGFx.js" type="text/javascript"></script>
+<script src="/js/ours/analytic.js" type="text/javascript"></script>
+<!--弹出框-->
+<script src="/dist/sweetalert.min.js" type="text/javascript"></script>
+<!-- 文本框 -->
+<script src="/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/js/pc/mathPanel.js"></script>
+<script src="/js/pc/jquery.hotkeys.js"></script>
+<script src="/js/pc/bootstrap-wysiwyg.js"></script>
+<!-- we are pengpeng.js -->
+<script src="/js/public.js"></script>
+<script src="/js/pc/index.js"></script>
+<script src="/js/pc/otherUser.js"></script>
+<script src="/js/pc/rightBox.js"></script>
+</body>
+</html>
