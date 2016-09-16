@@ -894,6 +894,7 @@
 
       //进入讨论组动画
       enterGroupAnimate : function($liGroup){
+          this.joinGroup =  $liGroup.index();
           if($liGroup.children(".panel_group").is(':hidden')){
               var $siblingsLi = $liGroup.siblings();
               if(msg.supportCss3("transform")) {
@@ -1641,9 +1642,14 @@
       //生成教室model
       addClassModal:function(){
 
-        var listGroup = "";
+        var listGroup = "",self = this;
         $.each(this.groupDiscussion,function(n,value){
-            listGroup += '<option value="group_'+n+'">'+value+'</option>'
+            if(self.joinGroup == n){
+                listGroup += '<option selected value="group_'+n+'">'+value+'</option>';
+            }else{
+                listGroup += '<option value="group_'+n+'">'+value+'</option>';
+            }
+
         });
 
         var data = '<div class="add-class-modal">'

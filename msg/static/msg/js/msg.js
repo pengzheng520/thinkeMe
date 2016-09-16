@@ -356,7 +356,6 @@
           $("#thinkMsg").on('click','#zGroup .panel_head',function(e){
               e.stopPropagation();
               var panelGroup  = $(this).next();
-
               //切换讨论组
               if(panelGroup.is(":hidden")){
 
