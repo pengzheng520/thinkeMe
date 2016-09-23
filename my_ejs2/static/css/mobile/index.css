@@ -429,7 +429,7 @@ div.mock-bottom > .yesBtn{
 /*base public*/
 *{ margin: 0;padding: 0;box-sizing: border-box}
 html{font-size:62.5%;}
-body{height: 100%;font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+body{height: 100%;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
 ol,ul {list-style:none;}
 a {text-decoration: none;}
 a:hover {text-decoration:none;}

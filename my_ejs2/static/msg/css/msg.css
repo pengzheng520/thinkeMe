@@ -1,4 +1,4 @@
-html, body {
+﻿html, body {
     height: 100%;
     width: 100%;
 }
@@ -6,7 +6,7 @@ body{
     background-color: #ccc;
 }
 #thinkMsg {
-    font: 14px/1 'Arial','Microsoft YaHei';
+    font: 14px/1 "Helvetica Neue",Helvetica,Arial,sans-serif;;
     color: #333;
     z-index: 9998;
 }
@@ -696,7 +696,7 @@ body{
 /*public.css*/
 html, body, button, input, select, textarea, li {
     font-size: 14px;
-    font-family: Tahoma, Helvetica, 'Microsoft Yahei', 微软雅黑, Arial, STHeiti;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
     margin: 0;

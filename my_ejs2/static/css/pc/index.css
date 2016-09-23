@@ -228,7 +228,7 @@ div.control-box > div.active,div.control-box > div:hover{
     text-indent: 15px;
     line-height: 36px;
     font-size: 14px;
-    font-family: '宋体';
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .ediatian {
     margin-bottom: 5px;
@@ -620,7 +620,7 @@ div.rcontent div.main {
 }
 /*base public*/
 html{font-size:62.5%;}
-body{font-size:62.5%;height: 100%;font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+body{font-size:62.5%;height: 100%;font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
 a {text-decoration: none;}
 a:hover {text-decoration:none;}
 a:focus,*:focus {outline:none;}
