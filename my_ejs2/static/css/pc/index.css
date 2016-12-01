@@ -345,7 +345,7 @@ div.control-box > div.active,div.control-box > div:hover{
     font-size: 14px;
 }
 div.reading_mode {
-    width: 261px;
+    width: 265px;
     line-height: 30px;
     padding-left: 15px;
     padding-right: 15px;
@@ -368,9 +368,8 @@ div.reading_mode div.col-xs-4:hover {
     background-color: #666666;
     transition: all 0.5s;
 }
-div.reading_mode div.col-xs-4:hover{
+div.reading_mode div.col-xs-4:hover,div.reading_mode div.col-xs-4:hover a{
     color: #fff;
-    transition: all 0.5s;
 }
 div.bituise {
     width: 260px;
