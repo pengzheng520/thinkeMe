@@ -8,7 +8,7 @@ var app = express();
 app.set('views','./views');
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname,'static')));
-var server = app.listen(80);
+var server = app.listen(8080);
 
 app.get('/', function (req, res) {
     res.render("index-asp");
