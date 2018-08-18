@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Live markdown editor based on MathJax and Marked</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!--添加动态几何图形-->
+<link rel="stylesheet" type="text/css" href="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraph.css" />
+<script type="text/javascript" src="http://jsxgraph.uni-bayreuth.de/distrib/jsxgraphcore.js"></script>
+
+<!-- based on MathJax/test/sample-dynamic-2.html 
+
+
+
+
+.MathJax{outline:0;}
+
+-->
+
+
+
+
+
+<style>
+
+.MathJax_Display{display:inline !important;}
+.mathjax-wrapper{font-size:100%;}
+.MathJax{outline:0;} /*去掉边框*/
+
+
+body {
+    width: 40em;
+}
+.hint {
+    text-align: right;
+    color: #555555;
+    font-size: small;
+}
+.hint a {
+    color: #555555;
+}
+textarea {
+    margin-top: 1ex;
+    width: 100%;
+    height: 20em;
+}
+.preview {
+    border:1px dotted; 
+    padding: 3px; 
+    width: 99%;
+    margin-top:1ex;
+}
+blockquote {
+    color: #6a737d;
+    padding-left: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin: 0;
+    border-left: 3px solid #73A0C5;
+}
+blockquote > blockquote {
+    border-color: #CF908D;
+}
+blockquote > blockquote > blockquote {
+    border-color: #57C59C;
+}
+blockquote > blockquote > blockquote > blockquote {
+    border-color: #C957F8;
+}
+blockquote > blockquote > blockquote > blockquote > blockquote {
+    border-color: #F8B829;
+}
+blockquote > blockquote > blockquote > blockquote > blockquote > blockquote {
+    border-color: #8DA1C5;
+}
+blockquote > blockquote > blockquote > blockquote > blockquote > blockquote > blockquote {
+    border-color: #888;
+}
+
+blockquote p:first-of-type {
+    margin-top: 0;
+}
+blockquote p:last-of-type {
+    margin-bottom: 0;
+}
+</style>
+
+<!-- 尚可
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"></script>
+-->
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+	messageStyle: "none",
+	extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/SVG"],//output/HTML-CSS
+    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']],
+	           displayMath: [ ['$$','$$'], ["\\[","\\]"]],
+			   skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+			   ignoreClass: "jxgbox|noMath"
+	
+	},
+    TeX: { equationNumbers: {autoNumber: "AMS"},
+	       noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } 
+	
+	},
+	"HTML-CSS": {
+        showMathMenu: false,//不显示菜单
+		availableFonts: ["STIX","TeX"]
+    }
+  });
+
+  //MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+<!--
+<script data-no-instant>
+	InstantClick.on('change', function(isInitialLoad){
+		if (isInitialLoad === false) {
+			if (typeof MathJax !== 'undefined'){
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+			}
+		}
+	});
+	InstantClick.init();
+</script>-->
+
+<!--
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>-->
+
+
+
+<!-- Davide Cervone recommended TeX-AMS_CHTML-full as the most appropriate configuration for this page. -->
+
+<!--
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML-full">
+</script>
+-->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+ 
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML-full"></script>
+
+<script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML-full&latest"></script>
+
+-->
+
+
+<!--原来的
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="lib/marked/lib/marked.js"></script>
+-->
+
+<!-- http://math.stackexchange.com   https://segmentfault.com/q/1010000000173054
+    <script type="text/x-mathjax-config">
+                MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+                                    tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+                                    TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+                                    messageStyle: "none"
+                });
+     </script>
+     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script> 
+-->
+
+<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+-->
+
+<script type="text/javascript" src="lib/marked.js"></script>
+
+<script>
+	marked.setOptions({
+		renderer: new marked.Renderer(),
+		gfm: true,
+		tables: true,
+		breaks: false,
+		pedantic: false,
+		sanitize: false, // IMPORTANT, because we do MathJax before markdown,
+					   //            however we do escaping in 'CreatePreview'.
+		smartLists: true,
+		smartypants: false
+	});
+</script>
+
+<script>
+var Preview = {
+	  delay: 50,        // delay after keystroke before updating
+
+	  preview: null,     // filled in by Init below
+	  buffer: null,      // filled in by Init below
+
+	  timeout: null,     // store setTimout id
+	  mjRunning: false,  // true when MathJax is processing
+	  oldText: null,     // used to check if an update is needed
+
+	  //
+	  //  Get the preview and buffer DIV's
+	  //
+	  Init: function () {
+		this.preview = document.getElementById("marked-mathjax-preview");
+		this.buffer = document.getElementById("marked-mathjax-preview-buffer");
+		this.textarea = document.getElementById("marked-mathjax-input");
+	  },
+
+  //
+  //  Switch the buffer and preview, and display the right one.
+  //  (We use visibility:hidden rather than display:none since
+  //  the results of running MathJax are more accurate that way.)
+  //
+  SwapBuffers: function () {
+    var buffer = this.preview;
+    var preview = this.buffer;
+    this.buffer = buffer;
+    this.preview = preview;
+    buffer.style.display = "none";
+    buffer.style.position = "absolute";
+    preview.style.position = ""; 
+    preview.style.display = "";
+  },
+
+  //
+  //  This gets called when a key is pressed in the textarea.
+  //  We check if there is already a pending update and clear it if so.
+  //  Then set up an update to occur after a small delay (so if more keys
+  //    are pressed, the update won't occur until after there has been 
+  //    a pause in the typing).
+  //  The callback function is set up below, after the Preview object is set up.
+  //
+  Update: function () {
+    if (this.timeout) {clearTimeout(this.timeout)}
+    this.timeout = setTimeout(this.callback,this.delay);
+  },
+
+  //
+  //  Creates the preview and runs MathJax on it.
+  //  If MathJax is already trying to render the code, return
+  //  If the text hasn't changed, return
+  //  Otherwise, indicate that MathJax is running, and start the
+  //    typesetting.  After it is done, call PreviewDone.
+  //  
+  CreatePreview: function () {
+    Preview.timeout = null;
+    if (this.mjRunning) return;
+    var text = this.textarea.value;
+    if (text === this.oldtext) return;
+    text = this.Escape(text);                       //Escape tags before doing stuff
+    this.buffer.innerHTML = this.oldtext = text;
+    this.mjRunning = true;
+    MathJax.Hub.Queue(
+      ["Typeset",MathJax.Hub,this.buffer],
+      ["PreviewDone",this],
+      ["resetEquationNumbers", MathJax.InputJax.TeX]
+    );
+  },
+
+  //
+  //  Indicate that MathJax is no longer running,
+  //  do markdown over MathJax's result, 
+  //  and swap the buffers to show the results.
+  //
+  PreviewDone: function () {
+    this.mjRunning = false;
+    text = this.buffer.innerHTML;
+    text = this.PartialDescape(text);
+    this.buffer.innerHTML = marked (text);
+    this.SwapBuffers();
+  },
+
+  Escape: function (html, encode) {
+    return html
+      .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  },
+
+  PartialDescape: function (html) {
+    var lines = html.split('\n');
+    var out = '';
+
+    // is true when we are 
+    // ```
+    //  inside a code block
+    // ```
+    var inside_code = false;
+    
+    for (var i = 0; i < lines.length; i++) {
+      // a hack to properly rendre the blockquotes
+      if (lines[i].startsWith('&gt;')) {
+        lines[i] = lines[i].replace(/&gt;/g, '>');
+      }
+
+      // rendrer properly stuff like this
+      // ```c
+      //  if (a > b)
+      // ```
+      if (inside_code) {
+        // inside the code we descape stuff
+        lines[i] = lines[i]
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, '\'');
+      }
+      if (lines[i].startsWith('```')) {
+        inside_code = ! inside_code;
+      }
+      out += lines[i] + '\n';
+    }
+    return out;    
+  },
+
+  // The idea here is to perform fast updates.
+  // See http://stackoverflow.com/questions/11228558/let-pagedown-and-mathjax-work-together/21563171?noredirect=1#comment46869312_21563171
+  // But our implementation is a bit buggy: flickering, bad rendering when someone types very fast.
+  //
+  // If you want to enable such buggy fast updates, you should 
+  // add something like  onkeypress="Preview.UpdateKeyPress(event)" to textarea's attributes.
+  UpdateKeyPress: function (event) {
+    if (event.keyCode < 16 || event.keyCode > 47) {
+      this.preview.innerHTML = '<p>' + marked(this.textarea.value) + '</p>';
+      this.buffer.innerHTML = '<p>' + marked(this.textarea.value) + '</p>';
+    }
+    this.Update();
+  }
+  
+};
+
+//
+//  Cache a callback to the CreatePreview action
+//
+Preview.callback = MathJax.Callback(["CreatePreview",Preview]);
+Preview.callback.autoReset = true;  // make sure it can run more than once</script>
+</head>
+
+<body>
+
+<!--
+<div style="float:right">
+  <a href="https://github.com/kerzol/markdown-mathjax">Get the source of this page</a>
+</div>
+-->
+
+<h4>Type something:</h4>
+
+  <textarea id="marked-mathjax-input" style="display:none"
+          onkeyup="Preview.Update()"
+          name="comment"
+            "autofocus">
+
+```
+#include<cmath>
+#include <stdio.h>
+int main()
+{
+   // printf() displays the string inside quotation
+   printf("Hello, World!");
+   return 0;
+}      
+```
+      
+    ##### test
+这个是行内数学公式$ \Gamma, G$ $A_G A_\Gamma$吗？
+
+这个是独立数学公式$$\sum_{x=1}^m f(x)=1$$
+
+> 注释注释注释，这个是行内数学公式$ \Gamma, G$ $A_G A_\Gamma$吗？这个是行内数学公式$ \Gamma, G$ $A_G A_\Gamma$吗？这个是行内数学公式$ \Gamma, G$ $A_G A_\Gamma$吗？
+>> $\Gamma$ [Example](http://exmaple.com)
+
+<marquee> NOT! </marquee>
+
+
+```squence
+  a-->b
+```
+
+$
+\begin{array}{|c|c|c|c|}
+\hline
+1& 1 > -1 & 1 & -1 \\ \hline
+& 3 & 55 & 44\\ \hline
+& 4 & 93 & 33\\ \hline
+& 5 & 6 &  22\\ \hline
+\end{array} $
+
+
+
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+
+
+包含编号的方程式$$
+\begin{equation*}
+   e^{\pi i} + 1 = 0
+\end{equation*}
+
+$$
+
+
+
+In equation \eqref{eq:sample}, we find the value of an
+interesting integral:
+$$
+\begin{equation}
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+  \label{eq:sample}
+\end{equation}
+$$
+
+```
+if (1 <b> a </b> 2)
+```
+
+$$ \left|\begin{array}{cc}
+  a & b \\
+  c & c
+\end{array}\right|
+$$
+
+
+$$\overbrace{x+\cdots+x}
+  ^{n\text{ times}}$$
+
+$$|x| = 
+\cases{
+x  & \text{if } x\ge 0\cr
+-x & \text{if } x\lt 0
+}$$
+
+  </textarea>
+
+  <div class="hint">Use 
+    <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">$\LaTeX$</a>
+    to type formulæ 
+    and <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a> to format text.
+  </div>
+
+  <div class="preview" id="marked-mathjax-preview"></div>
+ 
+  <div class="preview" id="marked-mathjax-preview-buffer" 
+       style="display:none;
+              position:absolute; 
+              top:0; left: 0"></div>
+
+<script>
+  Preview.Init();
+  Preview.Update();
+</script>
+
+    <div class="noMath">
+		这个应该不用显示数学公式
+		$ \begin{array}{cc}
+		  a & b \\
+		  c & c
+		\end{array}
+		$
+    </div>
+
+
+
+
+
+
+	<div class="">
+		这个显示数学公式
+		$  \begin{array}{cc}
+		  a & b \\
+		  c & c
+		\end{array}  + \fenshu{错误提示}{yyy}
+
+
+		$
+
+		$\frac{(x+1)\cancel{(x+2)}}{3\cancel{(x+2)}}$
+
+		$$\frac{\bcancel{\frac13}}{\bcancel{\frac13}} = 1$$
+
+		$$|x| = 
+\cases{
+x  & \text{if } x\ge 0\cr
+-x & \text{if } x\lt 0
+}$$
+    </div>
+
+
+	
+包含编号的方程式$$
+\begin{equation*}
+   e^{\pi i} + 1 = 0
+\end{equation*}
+
+$$
+
+
+
+In equation \eqref{eq:sample1}, we find the value of an
+interesting integral:
+$$
+\begin{equation}
+  \int_0^\infty \frac{x^3}{e^x-1}\,dx = \frac{\pi^4}{15}
+  \label{eq:sample1}
+\end{equation}
+$$
+    <div id="box" class="jxgbox" style="width:600px; height:600px;"></div>
+	<!--<div id="box1" class="jxgbox" style="width:600px; height:600px; user-select: none; overflow: hidden; position: relative;"></div>
+	<div id="box2" class="jxgbox" style="width:600px; height:600px;"></div>
+	<div id="box3" class="jxgbox" style="width:600px; height:600px;"></div>
+	<div id="box4" class="jxgbox" style="width:800px; height:800px;"></div>-->
+<script type="text/javascript">
+		// var board = JXG.JSXGraph.initBoard('box', {boundingbox: [-2, 4, 6, -4], axis:true, grid:true});
+		 
+		
+		//var board1 = JXG.JSXGraph.initBoard('box1', {boundingbox: [-5, 5, -10, 10], axis:true, grid:true,});
+		var brd, k;
+		//JXG.Options.text.useMathJax = true;
+        //JXG.JSXGraph.freeBoard(brd);//重新初始化时，建议使用
+		brd = JXG.JSXGraph.initBoard('box', {boundingbox:[-20,20,20,-20],axis:true, keepaspectratio:true,showNavigation:false, showCopyright:false});
+		//{originX:50, originY:250, unitX:50, unitY:10, axis:true}
+		k = brd.create('slider',[[0,-16],[10,-16],[-5,1,5]],{name:'n', snapWidth:1});		
+		brd.create('functiongraph', [function(t) {return JXG.Math.pow(Math.E,t*k.Value());}],{strokeColor:'#ff0000',strokeWidth:2});
+		
+		brd.create('text',[-10,15,
+		  function() { 
+			return '这是独立公式吗？\\[f(x) = e^{' + k.Value() + 'x}\\]';
+		  }],{useMathJax:true,fontSize:14});
+		
+		//brd.create('text',[-4,16,function(){ return '\\[y=\\sqrt{a+b}+y=\\sqrt{a+b}+y=\\sqrt{a+b}+y=\\sqrt{a+b}\\]'}],{fontSize:14});
+
+		var A = brd.create('point', [2, 5], {strokeWidth:1, name: 'A_1'});  
+        brd.create('text', [function(){return 0.5+A.X();}, function(){return A.Y()-0.5;}, function () { return '非独立公式？$f(x)X(A_1) = ' + A.X().toFixed(2)+"$"; }],{useMathJax:true});
+
+      /*
+		brd.on('update', function () {
+            console.log("change:"+k.Value()+"A.X():"+A.X());
+        });
+	*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+Drag the sliders to change the values of the coefficients a0,a1,a2,a3,a4,a5 of the polynomial $p(x):=a5*x^5+a4*x^4+a3*x^3+a2*x^2+a1*x+a0$. The initial polynomial (when the Reset button is pressed) is of degree \(0\). 
+ <div id="box1" class="jxgbox" style="width:500px; height:250px;"></div>
+ <div id="box2" class="jxgbox" style="width:500px; height:500px;"></div>
+
+<script>
+	var brd1 = JXG.JSXGraph.initBoard('box1', {boundingbox: [2, 0, 20, -20], showNavigation:false, showCopyright: false, axis:false});
+	var a5 = brd1.create('slider',[[3,-2],[11,-2],[-5,0,5]], {name:'a_5'});
+	var a4 = brd1.create('slider',[[3,-4],[11,-4],[-5,0,5]], {name:'a_4'});
+	var a3 = brd1.create('slider',[[3,-6],[11,-6],[-5,0,5]], {name:'a_3'});
+	var a2 = brd1.create('slider',[[3,-8],[11,-8],[-5,0,5]], {name:'a_2'});
+	var a1 = brd1.create('slider',[[3,-10],[11,-10],[-5,0,5]], {name:'a_1'});
+	var a0 = brd1.create('slider',[[3,-12],[11,-12],[-5,0,5]], {name:'a_0'});
+
+	  
+	var brd = JXG.JSXGraph.initBoard('box2', {boundingbox: [-10, 20, 10, -20], axis:true});
+		   brd1.addChild(brd);
+
+	var f = brd.create('functiongraph',[function(x){ 
+		return a5.Value()*x*x*x*x*x + a4.Value()*x*x*x*x + a3.Value()*x*x*x + a2.Value()*x*x + a1.Value()*x + a0.Value(); 
+	}]);
+
+	var button1 = brd1.create('button', [3, -15, 'Reset', function() {
+		a5.moveTo([7,-2]); 
+		a4.moveTo([7,-4]);
+		a3.moveTo([7,-6]);
+		a2.moveTo([7,-8]);
+		a1.moveTo([7,-10]);
+		a0.moveTo([7,-12]);
+		brd.update();
+	}], {});
+		
+	a5.on('drag',function(){ brd.update();});
+	a4.on('drag',function(){ brd.update();});
+	a3.on('drag',function(){ brd.update();});
+	a2.on('drag',function(){ brd.update();});
+	a1.on('drag',function(){ brd.update();});
+	a0.on('drag',function(){ brd.update();});
+  
+</script>
+
+
+
+</body>
+</html>
